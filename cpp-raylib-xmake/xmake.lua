@@ -2,7 +2,7 @@ add_rules("mode.debug", "mode.release")
 
 add_requires("raylib")
 
-target("xmake-starter")
+target("{{.Name}}")
     add_packages("raylib")
     add_includedirs("include")
     set_kind("binary")
