@@ -8,9 +8,11 @@ Starter projects for [fe](https://github.com/flushwhy/fe). Template IDs are stab
 | --- | --- |
 | `c-make` | C with a Makefile |
 | `c-raylib-cmake` | C game window using raylib and CMake |
+| `cpp-raylib-cmake` | C++17 game window using raylib and CMake |
 | `cpp-cmake` | C++ with CMake |
 | `cpp-raylib-xmake` | C++ with raylib and Xmake |
 | `cpp-sdl3-cmake` | C++ game window using SDL3 and CMake |
+| `godot-2d` | Godot 4 2D starter with a runnable scene and keyboard movement |
 | `go-basic` | Minimal Go application and module |
 | `odin-basic` | Minimal Odin application with OLS configuration |
 | `rust-basic` | Minimal Rust binary using Cargo |
@@ -30,4 +32,5 @@ Templates are downloaded on first use and cached locally. Use `fe template updat
 ## Build requirements
 
 - `rust-basic`: Rust toolchain with Cargo.
-- `c-raylib-cmake` and `cpp-sdl3-cmake`: CMake 3.20+, Git, the relevant compiler, network access for the first configure, and any platform dependencies required by raylib or SDL3.
+- `c-raylib-cmake`, `cpp-raylib-cmake`, and `cpp-sdl3-cmake`: CMake 3.20+, Git, the relevant compiler, network access for the first configure, and any platform dependencies required by raylib or SDL3.
+- `godot-2d`: Godot 4; desktop exports additionally require matching export templates.
