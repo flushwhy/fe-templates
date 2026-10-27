@@ -1,5 +1,7 @@
 #include "Player.hpp"
 
+#include "raymath.h"
+
 #include <algorithm>
 
 Player::Player(Vector2 startPosition) : position_(startPosition) {}
