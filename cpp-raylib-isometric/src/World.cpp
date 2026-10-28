@@ -1,6 +1,8 @@
 #include "World.hpp"
 
 #include "raymath.h"
+
+#include <algorithm>
 #include <nlohmann/json.hpp>
 
 #include <fstream>
