@@ -51,7 +51,7 @@ bool World::Load(const std::string& path) {
             // The demo uses a tiny semantic palette: 0=empty, 1=grass,
             // 2=path, 3=water, 4=wall. Tiled's firstgid defaults to 1.
             switch (gid) {
-                case 0: tiles_.push_back(TileType::Grass); break;
+                case 0: tiles_.push_back(TileType::Empty); break;
                 case 2: tiles_.push_back(TileType::Path); break;
                 case 3: tiles_.push_back(TileType::Water); break;
                 case 4: tiles_.push_back(TileType::Wall); break;
@@ -93,8 +93,11 @@ Vector2 World::WorldToGrid(Vector2 world) const {
 
 void World::DrawTile(int x, int y, TileType type) const {
     const Vector2 center = GridToWorld(Vector2{static_cast<float>(x), static_cast<float>(y)});
+    if (type == TileType::Empty) return;
+
     Color color;
     switch (type) {
+        case TileType::Empty: return;
         case TileType::Grass: color = Color{82, 142, 91, 255}; break;
         case TileType::Path: color = Color{190, 157, 105, 255}; break;
         case TileType::Water: color = Color{65, 133, 178, 255}; break;
