@@ -1,6 +1,6 @@
 # {{.Name}}
 
-A C++17 + raylib isometric RPG starter with Tiled map loading, image tilesets, smooth grid movement, tile collision, A* pathfinding, a roaming NPC, object-layer spawn points and interactions, camera follow/zoom, and depth ordering.
+A C++17 + raylib isometric RPG starter with Tiled map loading, image tilesets, smooth grid movement, tile collision, A* pathfinding, a roaming NPC, object-layer spawn points and interactions, camera follow/zoom, depth sorting, a reusable entity lifecycle, and sprite-sheet animation.
 
 ## Build and run
 
@@ -26,17 +26,14 @@ Requirements: CMake 3.20+, a C++17 compiler, Git, and network access on first co
 Open `assets/world.tmj` in [Tiled](https://www.mapeditor.org/). The sample uses a four-tile SVG placeholder tileset, but the loader also reads regular image tilesets (such as PNG) and external JSON tileset files. Keep the map orientation isometric and use finite tile layers.
 
 - Add tile layers to draw more terrain layers; layer visibility and opacity are respected.
-- Add an object layer named however you like. Point objects named `PlayerSpawn`, `Mira`, or `MiraGoal` configure the sample player and NPC positions.
+- Add an object layer. Point objects named `PlayerSpawn`, `Mira`, and `MiraGoal` configure the player and NPC patrol positions.
 - Objects with type/class `interactable` show a marker and display their name when the player presses E nearby.
 - In a tileset's tile properties, set `walkable` to `true` or `false` to control movement. Tiles without this property use the starter's default: local tile IDs 2 and 3 are blocked.
 
-The renderer supports regular grid image tilesets with columns, tile dimensions, and GID ranges. Tiled flip flags are safely masked but not visually applied yet; infinite/chunked maps and animated tiles are not supported yet.
+## Entities and animation
 
-## Included systems
+`Entity` defines a shared update/draw/position interface, and the game updates and depth-sorts entities through that interface. `AnimatedSprite` loads a 4-frame SVG sprite sheet and switches between idle and walking rows. Replace `assets/character.svg` with your own 4-column, 2-row sheet, or keep the placeholder sprites. If the sprite sheet fails to load, player and NPC fall back to simple shapes.
 
-- `World`: Tiled JSON parsing, image tilesets, multiple tile layers, isometric transforms, tile-property collision, and A* pathfinding.
-- `Player`: smooth tile-to-tile movement and collision.
-- `Npc`: autonomous path following and dialogue data.
-- `Game`: camera follow/zoom, object-layer interactions, and character depth ordering.
+## Current limits
 
-This is a playable foundation rather than a full engine. Sprite-sheet animation, animated Tiled tiles, and a reusable entity lifecycle are good next additions.
+The renderer supports regular grid image tilesets with columns, tile dimensions, and GID ranges. Tiled flip flags are safely masked but not visually applied yet; infinite/chunked maps, animated Tiled tiles, and arbitrary object-driven collision shapes are not supported yet.
