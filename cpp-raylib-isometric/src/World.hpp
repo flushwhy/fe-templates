@@ -6,6 +6,7 @@
 #include <vector>
 
 enum class TileType {
+    Empty,
     Grass,
     Path,
     Water,
