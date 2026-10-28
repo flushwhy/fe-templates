@@ -1,9 +1,15 @@
 #include "Game.hpp"
 #include <algorithm>
 #include <cmath>
+#include <vector>
 
 Game::Game() = default;
-Game::~Game() { world_.Unload(); CloseWindow(); }
+Game::~Game() {
+    player_.Unload();
+    npc_.Unload();
+    world_.Unload();
+    CloseWindow();
+}
 
 bool Game::Initialize() {
     InitWindow(960, 640, "{{.Name}}");
@@ -13,6 +19,8 @@ bool Game::Initialize() {
     player_ = Player(world_.ObjectPosition("PlayerSpawn", {2, 2}));
     npc_ = Npc(world_.ObjectPosition("Mira", {7, 7}), world_.ObjectPosition("MiraGoal", {2, 2}),
                "Mira", "Welcome! Use WASD or arrows to explore.");
+    player_.LoadAssets("assets/character.svg");
+    npc_.LoadAssets("assets/character.svg");
     camera_.offset = {GetScreenWidth() * 0.5f, GetScreenHeight() * 0.5f};
     camera_.rotation = 0.0f;
     camera_.zoom = 1.8f;
@@ -37,8 +45,8 @@ void Game::Run() {
 }
 
 void Game::Update(float dt) {
-    player_.Update(dt, world_);
-    npc_.Update(dt, world_);
+    Entity* entities[] = {&player_, &npc_};
+    for (Entity* entity : entities) entity->Update(dt, world_);
     camera_.target = world_.GridToWorld(player_.RenderGridPosition());
     camera_.zoom = Clamp(camera_.zoom + GetMouseWheelMove() * 0.1f, 0.8f, 3.2f);
     dialogueTimer_ = std::max(0.0f, dialogueTimer_ - dt);
@@ -60,14 +68,12 @@ void Game::Update(float dt) {
 
 void Game::Draw() const {
     world_.Draw();
-    if (player_.RenderGridPosition().x + player_.RenderGridPosition().y <
-        npc_.GridPosition().x + npc_.GridPosition().y) {
-        player_.Draw(world_);
-        npc_.Draw(world_);
-    } else {
-        npc_.Draw(world_);
-        player_.Draw(world_);
-    }
+    std::vector<const Entity*> entities{&player_, &npc_};
+    std::sort(entities.begin(), entities.end(), [](const Entity* a, const Entity* b) {
+        const Vector2 p = a->RenderGridPosition(), q = b->RenderGridPosition();
+        return p.x + p.y < q.x + q.y;
+    });
+    for (const Entity* entity : entities) entity->Draw(world_);
     for (const auto& object : world_.Objects()) {
         if (object.type == "interactable") {
             const Vector2 p = world_.GridToWorld(object.gridPosition);
