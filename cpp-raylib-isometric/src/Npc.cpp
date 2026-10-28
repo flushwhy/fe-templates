@@ -1,6 +1,7 @@
 #include "Npc.hpp"
 
 #include "raymath.h"
+#include <utility>
 
 Npc::Npc(Vector2 start, Vector2 goal, std::string name, std::string dialogue)
     : renderGrid_(start), name_(std::move(name)), dialogue_(std::move(dialogue)) {}
