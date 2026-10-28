@@ -8,8 +8,9 @@ Npc::Npc(Vector2 start, Vector2 goal, std::string name, std::string dialogue)
 
 void Npc::Update(float deltaTime, const World& world) {
     if (path_.empty()) {
-        const Vector2 goal{renderGrid_.x < 5.0f ? 7.0f : 2.0f, renderGrid_.y < 5.0f ? 7.0f : 2.0f};
-        path_ = world.FindPath(renderGrid_, goal);
+        if (Vector2Distance(renderGrid_, goal_) < 0.5f)
+            goal_ = Vector2Distance(renderGrid_, home_) < 0.5f ? patrolGoal_ : home_;
+        path_ = world.FindPath(renderGrid_, goal_);
         nextStep_ = 0;
     }
     if (nextStep_ >= path_.size()) {
