@@ -16,7 +16,7 @@ public:
     const std::string& Dialogue() const { return dialogue_; }
 
 private:
-    Vector2 renderGrid_;\n    Vector2 goal_;
+    Vector2 renderGrid_;\n    Vector2 home_;\n    Vector2 patrolGoal_;\n    Vector2 goal_;
     std::vector<Vector2> path_;
     std::size_t nextStep_ = 0;
     float speed_ = 2.5f;
