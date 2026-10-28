@@ -4,7 +4,7 @@
 #include <utility>
 
 Npc::Npc(Vector2 start, Vector2 goal, std::string name, std::string dialogue)
-    : renderGrid_(start), goal_(goal), name_(std::move(name)), dialogue_(std::move(dialogue)) {}
+    : renderGrid_(start), home_(start), patrolGoal_(goal), goal_(goal), name_(std::move(name)), dialogue_(std::move(dialogue)) {}
 
 void Npc::Update(float deltaTime, const World& world) {
     if (path_.empty()) {
