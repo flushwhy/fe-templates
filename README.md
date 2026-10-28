@@ -34,6 +34,6 @@ Templates are downloaded on first use and cached locally. Use `fe template updat
 ## Build requirements
 
 - `rust-basic`: Rust toolchain with Cargo.
-- `c-raylib-cmake`, `cpp-raylib-cmake`, `cpp-raylib-game`, `cpp-raylib-isometric`, and `cpp-sdl3-cmake`: CMake 3.20+, Git, the relevant compiler, network access for the first configure, and any platform dependencies required by raylib or SDL3.
-- `godot-2d`: Godot 4; desktop exports additionally require matching export templates.
+- `c-raylib-cmake`, `cpp-raylib-cmake`, `cpp-raylib-game`, and `cpp-sdl3-cmake`: CMake 3.20+, Git, the relevant compiler, network access for the first configure, and any platform dependencies required by raylib or SDL3.
 - `cpp-raylib-isometric`: CMake 3.20+, a C++17 compiler, Git, and network access for the first configure (raylib and nlohmann/json are fetched by CMake).
+- `godot-2d`: Godot 4; desktop exports additionally require matching export templates.
