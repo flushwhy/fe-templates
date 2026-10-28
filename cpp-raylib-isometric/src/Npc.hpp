@@ -1,28 +1,29 @@
 #pragma once
 
-#include "raylib.h"
+#include "AnimatedSprite.hpp"
+#include "Entity.hpp"
 #include "World.hpp"
 
 #include <string>
 #include <vector>
 
-class Npc {
+class Npc : public Entity {
 public:
     Npc(Vector2 start, Vector2 goal, std::string name, std::string dialogue);
-    void Update(float deltaTime, const World& world);
-    void Draw(const World& world) const;
-    Vector2 GridPosition() const { return renderGrid_; }
+    void LoadAssets(const std::string& path);
+    void Unload();
+    void Update(float deltaTime, const World& world) override;
+    void Draw(const World& world) const override;
+    Vector2 GridPosition() const override { return renderGrid_; }
+    Vector2 RenderGridPosition() const override { return renderGrid_; }
     const std::string& Name() const { return name_; }
     const std::string& Dialogue() const { return dialogue_; }
 
 private:
-    Vector2 renderGrid_;
-    Vector2 home_;
-    Vector2 patrolGoal_;
-    Vector2 goal_;
+    Vector2 renderGrid_, home_, patrolGoal_, goal_;
     std::vector<Vector2> path_;
     std::size_t nextStep_ = 0;
     float speed_ = 2.5f;
-    std::string name_;
-    std::string dialogue_;
+    std::string name_, dialogue_;
+    AnimatedSprite sprite_;
 };
