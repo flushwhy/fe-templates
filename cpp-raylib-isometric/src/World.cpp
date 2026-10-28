@@ -6,7 +6,9 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <queue>\n#include <stdexcept>\n#include <utility>
+#include <queue>
+#include <stdexcept>
+#include <utility>
 
 using nlohmann::json;
 
@@ -107,7 +109,8 @@ bool World::Load(const std::string& path) {
                     item.name = object.value("name", std::string());
                     item.type = object.value("type", object.value("class", std::string()));
                     const Vector2 pixel{object.value("x", 0.0f), object.value("y", 0.0f)};
-                    // Tiled's isometric object coordinates include the map's left-side projection offset.\n                    item.gridPosition = WorldToGrid({pixel.x - height_ * tileWidth_ * 0.5f, pixel.y});
+                    // Tiled's isometric object coordinates include the map's left-side projection offset.
+                    item.gridPosition = WorldToGrid({pixel.x - height_ * tileWidth_ * 0.5f, pixel.y});
                     objects_.push_back(std::move(item));
                 }
             }
