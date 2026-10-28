@@ -53,10 +53,13 @@ bool World::Load(const std::string& path) {
         const auto mapDirectory = std::filesystem::path(path).parent_path();
         for (const auto& source : map.value("tilesets", json::array())) {
             json tileset = source;
+            auto tilesetDirectory = mapDirectory;
             if (source.contains("source")) {
-                std::ifstream external(mapDirectory / source.at("source").get<std::string>());
+                const auto externalPath = mapDirectory / source.at("source").get<std::string>();
+                std::ifstream external(externalPath);
                 if (!external) throw std::runtime_error("could not open external tileset: " + source.at("source").get<std::string>());
                 external >> tileset;
+                tilesetDirectory = externalPath.parent_path();
             }
             TileSet set;
             set.firstGid = source.at("firstgid").get<int>();
@@ -65,7 +68,7 @@ bool World::Load(const std::string& path) {
             set.columns = tileset.value("columns", 0);
             set.tileCount = tileset.value("tilecount", 0);
             if (tileset.contains("image")) {
-                const auto imagePath = mapDirectory / tileset.at("image").get<std::string>();
+                const auto imagePath = tilesetDirectory / tileset.at("image").get<std::string>();
                 set.texture = LoadTilesetTexture(imagePath, tileset.value("imagewidth", 0), tileset.value("imageheight", 0));
                 set.loaded = IsTextureValid(set.texture);
                 if (set.columns <= 0 && set.loaded) set.columns = static_cast<int>(set.texture.width) / set.tileWidth;
