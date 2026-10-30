@@ -1,0 +1,11 @@
+schema_version = "1.0.0"
+
+id = "my_blender_addon"
+version = "1.0.0"
+name = "My Blender Add-on"
+tagline = "A starter Blender extension"
+maintainer = "Your Name <you@example.com>"
+type = ["add-on"]
+tags = ["3D View"]
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]

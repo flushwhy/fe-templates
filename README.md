@@ -6,6 +6,7 @@ Starter projects for [fe](https://github.com/flushwhy/fe). Template IDs are stab
 
 | Template ID | Description |
 | --- | --- |
+| `blender-addon` | Minimal Blender 4.2+ extension with manifest and 3D View panel |
 | `c-make` | C with a Makefile |
 | `c-raylib-cmake` | C game window using raylib and CMake |
 | `cpp-raylib-cmake` | C++17 game window using raylib and CMake |
@@ -33,6 +34,7 @@ Templates are downloaded on first use and cached locally. Use `fe template updat
 
 ## Build requirements
 
+- `blender-addon`: No third-party Python packages are required. Blender 4.2+ is needed to validate, install, and run the extension; ZIP creation can be done with ordinary archive tooling.
 - `rust-basic`: Rust toolchain with Cargo.
 - `c-raylib-cmake`, `cpp-raylib-cmake`, `cpp-raylib-game`, `cpp-raylib-isometric`, and `cpp-sdl3-cmake`: CMake 3.20+, Git, the relevant compiler, network access for the first configure, and any platform dependencies required by raylib or SDL3.
 - `godot-2d`: Godot 4; desktop exports additionally require matching export templates.
