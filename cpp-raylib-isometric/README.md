@@ -1,10 +1,10 @@
 # {{.Name}}
 
-A runnable C++17 + raylib isometric starter with a camera-following player, grid movement, tile collision, and a map authored in Tiled's JSON format.
+A C++17 + raylib isometric RPG starter with Tiled map loading, image tilesets, smooth grid movement, tile collision, A* pathfinding, a roaming NPC, object-layer spawn points and interactions, camera follow/zoom, depth sorting, a reusable entity lifecycle, and sprite-sheet animation.
 
 ## Build and run
 
-Run these commands from the project root:
+Run from the project root:
 
 ```sh
 cmake -S . -B build
@@ -12,28 +12,28 @@ cmake --build build
 ./build/{{.Name}}
 ```
 
-On Windows, run the executable from the project root so the relative map path resolves. Requirements: CMake 3.20+, a C++17 compiler, Git, and network access on first configure.
+Requirements: CMake 3.20+, a C++17 compiler, Git, and network access on first configure. CMake fetches raylib 5.5 and nlohmann/json.
 
 ## Controls
 
-- WASD or arrow keys: move one tile at a time.
+- WASD or arrow keys: move one tile at a time, with smooth movement between tiles.
+- E: talk to Mira or inspect the sign when nearby.
+- Mouse wheel: zoom camera.
 - Escape: quit.
 
-## Editing the map
+## Editing the map in Tiled
 
-Open `assets/world.tmj` in [Tiled](https://www.mapeditor.org/). The demo deliberately uses a tiny semantic palette so it runs without downloaded art assets:
+Open `assets/world.tmj` in [Tiled](https://www.mapeditor.org/). The sample uses a four-tile SVG placeholder tileset, but the loader also reads regular image tilesets (such as PNG) and external JSON tileset files. Keep the map orientation isometric and use finite tile layers.
 
-- GID 1: grass (walkable)
-- GID 2: path (walkable)
-- GID 3: water (blocked)
-- GID 4: wall (blocked)
+- Add tile layers to draw more terrain layers; layer visibility and opacity are respected.
+- Add an object layer. Point objects named `PlayerSpawn`, `Mira`, and `MiraGoal` configure the player and NPC patrol positions.
+- Objects with type/class `interactable` show a marker and display their name when the player presses E nearby.
+- In a tileset's tile properties, set `walkable` to `true` or `false` to control movement. Tiles without this property use the starter's default: local tile IDs 2 and 3 are blocked.
 
-The renderer draws placeholder diamonds by tile ID; this keeps the starter self-contained while you get movement, projection, camera, and collision working. Replace `World::DrawTile` with tileset rendering when you're ready to add art. The map loader reads the first tile layer from Tiled JSON (`.tmj`) and expects an isometric map with finite tile-layer data.
+## Entities and animation
 
-## Where to extend it
+`Entity` defines a shared update/draw/position interface, and the game updates and depth-sorts entities through that interface. `AnimatedSprite` loads a 4-frame SVG sprite sheet and switches between idle and walking rows. Replace `assets/character.svg` with your own 4-column, 2-row sheet, or keep the placeholder sprites. If the sprite sheet fails to load, player and NPC fall back to simple shapes.
 
-- `src/World.cpp`: isometric grid/world conversion, map loading, collision, and tile rendering.
-- `src/Player.cpp`: movement and player drawing.
-- `src/Game.cpp`: camera, game loop, and HUD.
+## Current limits
 
-This is a small foundation, not a full engine. It intentionally leaves pathfinding, animation, entities, inventory, and save data for the game to add as needed.
+The renderer supports regular grid image tilesets with columns, tile dimensions, and GID ranges. Tiled flip flags are safely masked but not visually applied yet; infinite/chunked maps, animated Tiled tiles, and arbitrary object-driven collision shapes are not supported yet.

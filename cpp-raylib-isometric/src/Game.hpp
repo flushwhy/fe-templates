@@ -1,8 +1,9 @@
 #pragma once
-
+#include "Npc.hpp"
 #include "Player.hpp"
 #include "World.hpp"
 #include "raylib.h"
+#include <string>
 
 class Game {
 public:
@@ -13,9 +14,12 @@ public:
 
 private:
     World world_;
-    Player player_{{5.0f, 5.0f}};
+    Player player_{{2, 2}};
+    Npc npc_{{7, 7}, {2, 2}, "Mira", "Welcome! Use WASD or arrows to explore."};
     Camera2D camera_{};
+    std::string dialogue_;
+    float dialogueTimer_ = 0.0f;
 
-    void Update(float deltaTime);
+    void Update(float dt);
     void Draw() const;
 };
