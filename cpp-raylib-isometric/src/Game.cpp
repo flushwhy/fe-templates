@@ -1,7 +1,7 @@
 #include "Game.hpp"
 #include <algorithm>
 #include <cmath>
-#include <vector>
+#include <array>
 
 Game::Game() = default;
 Game::~Game() {
@@ -68,7 +68,7 @@ void Game::Update(float dt) {
 
 void Game::Draw() const {
     world_.Draw();
-    std::vector<const Entity*> entities{&player_, &npc_};
+    std::array<const Entity*, 2> entities{&player_, &npc_};
     std::sort(entities.begin(), entities.end(), [](const Entity* a, const Entity* b) {
         const Vector2 p = a->RenderGridPosition(), q = b->RenderGridPosition();
         return p.x + p.y < q.x + q.y;
