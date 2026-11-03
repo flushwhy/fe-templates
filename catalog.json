@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "blender-addon",
+      "name": "Blender Add-on",
+      "description": "Minimal Blender 4.2+ extension with a manifest and 3D View panel.",
+      "category": "Blender",
+      "tags": [
+        "blender",
+        "python",
+        "addon"
+      ]
+    },
+    {
+      "id": "c-make",
+      "name": "C / Make",
+      "description": "Minimal C application built with a Makefile.",
+      "category": "C",
+      "tags": [
+        "c",
+        "make"
+      ]
+    },
+    {
+      "id": "c-raylib-cmake",
+      "name": "C / raylib",
+      "description": "C game window using raylib and CMake.",
+      "category": "C",
+      "tags": [
+        "c",
+        "raylib",
+        "cmake",
+        "game"
+      ]
+    },
+    {
+      "id": "cpp-raylib-cmake",
+      "name": "C++ / raylib",
+      "description": "C++17 game window using raylib and CMake.",
+      "category": "C++",
+      "tags": [
+        "cpp",
+        "raylib",
+        "cmake",
+        "game"
+      ]
+    },
+    {
+      "id": "cpp-raylib-game",
+      "name": "C++ / raylib game",
+      "description": "Playable raylib game loop with Entity and Player examples.",
+      "category": "C++",
+      "tags": [
+        "cpp",
+        "raylib",
+        "game"
+      ]
+    },
+    {
+      "id": "cpp-raylib-isometric",
+      "name": "C++ / isometric raylib",
+      "description": "Isometric Tiled map with camera follow, movement, animation, and collision.",
+      "category": "C++",
+      "tags": [
+        "cpp",
+        "raylib",
+        "tiled",
+        "isometric",
+        "game"
+      ]
+    },
+    {
+      "id": "cpp-cmake",
+      "name": "C++ / CMake",
+      "description": "Minimal C++ project using CMake.",
+      "category": "C++",
+      "tags": [
+        "cpp",
+        "cmake"
+      ]
+    },
+    {
+      "id": "cpp-raylib-xmake",
+      "name": "C++ / raylib / Xmake",
+      "description": "C++ raylib starter using Xmake.",
+      "category": "C++",
+      "tags": [
+        "cpp",
+        "raylib",
+        "xmake",
+        "game"
+      ]
+    },
+    {
+      "id": "cpp-sdl3-cmake",
+      "name": "C++ / SDL3",
+      "description": "C++ game window using SDL3 and CMake.",
+      "category": "C++",
+      "tags": [
+        "cpp",
+        "sdl3",
+        "cmake",
+        "game"
+      ]
+    },
+    {
+      "id": "godot-2d",
+      "name": "Godot 2D",
+      "description": "Godot 4 2D starter with a runnable scene and keyboard movement.",
+      "category": "Godot",
+      "tags": [
+        "godot",
+        "2d",
+        "game"
+      ]
+    },
+    {
+      "id": "go-basic",
+      "name": "Go basic",
+      "description": "Minimal Go application and module.",
+      "category": "Go",
+      "tags": [
+        "go",
+        "cli"
+      ]
+    },
+    {
+      "id": "odin-basic",
+      "name": "Odin basic",
+      "description": "Minimal Odin application with OLS configuration.",
+      "category": "Odin",
+      "tags": [
+        "odin",
+        "ols"
+      ]
+    },
+    {
+      "id": "rust-basic",
+      "name": "Rust basic",
+      "description": "Minimal Rust binary using Cargo.",
+      "category": "Rust",
+      "tags": [
+        "rust",
+        "cargo"
+      ]
+    },
+    {
+      "id": "zig-build",
+      "name": "Zig build",
+      "description": "Minimal Zig application using the Zig build system.",
+      "category": "Zig",
+      "tags": [
+        "zig",
+        "build-system"
+      ]
+    }
+  ]
+}
