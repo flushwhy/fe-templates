@@ -32,6 +32,8 @@ Language defaults are also available through `fe init c`, `fe init cpp`, `fe ini
 
 Templates are downloaded on first use and cached locally. Use `fe template update <id>` to refresh a cached copy.
 
+The machine-readable `catalog.json` file is the source of template names, descriptions, categories, and tags used by `fe template list`.
+
 ## Build requirements
 
 - `blender-addon`: No third-party Python packages are required. Blender 4.2+ is needed to validate, install, and run the extension; ZIP creation can be done with ordinary archive tooling.
